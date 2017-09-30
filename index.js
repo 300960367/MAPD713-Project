@@ -153,7 +153,7 @@ server.del('/patients/:id', function (req, res, next) {
 
   for (i=1; i<=ctPost; i++) {
     // Delete the patient with the persistence engine
-    req.params.id = i
+    req.params.id = i 
     patientsSave.delete(req.params.id, function (error, patient) {
 
       // If there are any errors, pass them to next in the correct format
