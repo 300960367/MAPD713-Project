@@ -1,14 +1,17 @@
-/*
-POSTMAN
-POST JSON (application/json)
-{"name":"Peter","age":"25"}
-*/
-
+/*******************************************************
+ * MAPD713 - Enteprise Technologies for Mobile Platforms
+ * Fernando Ito - 09/29/2017
+ * POSTMAN
+ * POST JSON (application/json)
+ * {"name":"Peter","age":"25"}
+ *******************************************************/
 
 var SERVER_NAME = 'user-api'
 var PORT = 8000;
 var HOST = '127.0.0.1';
-
+var ctGet = 0;
+var ctPost = 0;
+var ctDelete = 0;
 
 var restify = require('restify')
 
@@ -62,7 +65,13 @@ server.get('/patients/:id', function (req, res, next) {
   })
 })
 
-// Create a new patient
+/*******************************
+ * Create a new patient
+ * POSTMAN:
+ * POST JSON (application/json)
+ * {"name":"Peter","age":"25"}
+ *******************************/
+
 server.post('/patients', function (req, res, next) {
 
   // Make sure name is defined
@@ -87,6 +96,10 @@ server.post('/patients', function (req, res, next) {
 
     // Send the patient if no issues
     res.send(201, patient)
+
+    ctPost++
+    console.log("Posts: " + ctPost)
+
   })
 })
 
@@ -121,6 +134,7 @@ server.put('/patients/:id', function (req, res, next) {
 })
 
 // Delete patient with the given id
+/*
 server.del('/patients/:id', function (req, res, next) {
 
   // Delete the patient with the persistence engine
@@ -132,4 +146,22 @@ server.del('/patients/:id', function (req, res, next) {
     // Send a 200 OK response
     res.send()
   })
+})
+*/
+// Delete patient with the given id
+server.del('/patients/:id', function (req, res, next) {
+
+  for (i=1; i<=ctPost; i++) {
+    // Delete the patient with the persistence engine
+    req.params.id = i
+    patientsSave.delete(req.params.id, function (error, patient) {
+
+      // If there are any errors, pass them to next in the correct format
+      if (error) return next(new restify.InvalidArgumentError(JSON.stringify(error.errors)))
+
+      // Send a 200 OK response
+      res.send()
+      console.log(i)
+    })
+  }
 })

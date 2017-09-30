@@ -1,5 +1,5 @@
 {
-    "name": "UserApi",
+    "name": "Project - Hospital App Server",
     "version": "1.0.0",
     "description": "REST API - Users",
     "dependencies": {
@@ -9,4 +9,5 @@
     "author": "Fernando Ito",
     "private": true,
     "main": "index.js"
+    "url":"https://github.com/300960367/MAPD713-Project"
 }
