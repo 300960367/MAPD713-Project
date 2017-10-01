@@ -8,7 +8,7 @@ var PORT = 8000;
 var HOST = '127.0.0.1';
 var ctGet = 0;
 var ctPost = 0;
-var ctDelete = 0;
+var ctDelete = 0; 
 
 var restify = require('restify')
 
