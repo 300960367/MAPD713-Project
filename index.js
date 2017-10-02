@@ -1,14 +1,20 @@
-/*******************************************************
- * MAPD713 - Enteprise Technologies for Mobile Platforms
- * Fernando Ito - 09/29/2017
- *******************************************************/
+/**************************************************************************************
+  * MAPD713 - Enteprise Technologies for Mobile Platforms
+  *
+  * Student Name: Fernando Ito
+  * Student ID: 300960367
+  * File: index.js - last updated: 10/01/2017
+  * Description: Project Hospital App
+  * gitHub: https://github.com/300960367/MAPD714-Assignment1
+  * Version: 0.1 - Delete All function.
+  **************************************************************************************/
 
 var SERVER_NAME = 'user-api'
 var PORT = 8000;
 var HOST = '127.0.0.1';
 var ctGet = 0;
 var ctPost = 0;
-var ctDelete = 0; 
+var ctDelete = 0;
 
 var restify = require('restify')
 
@@ -35,8 +41,8 @@ server
 // Get all patients in the system
 server.get('/patients', function (req, res, next) {
 
-  // Find every entity within the given collection
-  patientsSave.find({}, function (error, patients) {
+    // Find every entity within the given collection
+    patientsSave.find({}, function (error, patients) {
 
     // Return all of the patients in the system
     res.send(patients)
@@ -130,8 +136,18 @@ server.put('/patients/:id', function (req, res, next) {
   })
 })
 
+// Delete All patients
+server.del('/patients/deleteall', function (req, res, next) {
+
+    // reset the given collection
+    patientsSave = require('save')('patients')
+
+    // Send a 200 OK response
+    res.send("All records deleted.")
+})
+
+
 // Delete patient with the given id
-/*
 server.del('/patients/:id', function (req, res, next) {
 
   // Delete the patient with the persistence engine
@@ -143,22 +159,4 @@ server.del('/patients/:id', function (req, res, next) {
     // Send a 200 OK response
     res.send()
   })
-})
-*/
-// Delete patient with the given id
-server.del('/patients/:id', function (req, res, next) {
-
-  for (i=1; i<=ctPost; i++) {
-    // Delete the patient with the persistence engine
-    req.params.id = i
-    patientsSave.delete(req.params.id, function (error, patient) {
-
-      // If there are any errors, pass them to next in the correct format
-      if (error) return next(new restify.InvalidArgumentError(JSON.stringify(error.errors)))
-
-      // Send a 200 OK response
-      res.send()
-      console.log(i)
-    })
-  }
 })
