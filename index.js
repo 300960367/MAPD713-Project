@@ -72,7 +72,7 @@ server.get('/patients/:id', function (req, res, next) {
  * Create a new patient
  * POSTMAN:
  * POST JSON (application/json)
- * {"name":"Peter","age":"25"}
+ * {"name":"Peter","age":"32"}
  *******************************/
 
 server.post('/patients', function (req, res, next) {
@@ -141,9 +141,10 @@ server.del('/patients/deleteall', function (req, res, next) {
 
     // reset the given collection
     patientsSave = require('save')('patients')
+    console.log("Deleting all 'patients'")
 
-    // Send a 200 OK response
-    res.send("All records deleted.")
+    // Send a message as response
+    res.send(All records deleted.)
 })
 
 
