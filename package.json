@@ -1,13 +1,18 @@
 {
-    "name": "Project - Hospital App Server",
-    "version": "1.0.0",
-    "description": "REST API - Users",
-    "dependencies": {
-        "restify": "4.1.1",
-        "save": "2.3.0"
-    },
-    "author": "Fernando Ito",
-    "private": true,
-    "main": "index.js",
-    "url":"https://github.com/300960367/MAPD713-Project.git"
+  "name": "api-server-seneca-example",
+  "version": "0.1.0",
+  "description": "API server example",
+  "subdomain": "api-server-seneca-example",
+  "main": "main.js",
+  "repository": "",
+  "author": "Richard Rodger",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "~1.11.0",
+    "express": "~4.11.1",
+    "lodash": "~3.0.1",
+    "request": "~2.51.0",
+    "seneca": "~0.8.0",
+    "seneca-jsonrest-api": "~0.3.1"
+  }
 }
